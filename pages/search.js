@@ -1,34 +1,55 @@
-import React from 'react'
+import React, {useState} from 'react'
 import tw from "tailwind-styled-components"
 import Link from "next/link"
 
 const search = () => {
+  const [pickup, setPickup] = useState("");
+  const [dropoff, setDropoff] = useState("");
+  console.log(pickup)
+  console.log(dropoff)
+
   return (
     <Wrapper>
       <ButtonContainer>
         <Link href="/">
-        <BackButton src="https://img.icons8.com/ios/50/000000/left.png" />
+        <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
         </Link>
       </ButtonContainer>
       <InputContainer>
         <FromToIcons>
           <Circle src="https://img.icons8.com/ios-filled/50/9CA3AF/filled-circle.png" />
           <Line src="https://img.icons8.com/ios/50/9CA3AF/vertical-line.png" />
-          <Square src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif" />
+          <Square src="https://img.icons8.com/windows/50/000000/square-full.png" />
         </FromToIcons>
         <InputBoxes>
-          <Input placeholder="Enter pickup ocation" />
-          <Input placeholder="Where to?" />
+          <Input 
+            placeholder="Enter pickup ocation" 
+            value={pickup}  
+            onChange={(event) => setPickup(event.target.value)}
+          />
+          <Input 
+            placeholder="Where to?" 
+            value={dropoff}
+            onChange={(event) => setDropoff(event.target.value)}  
+          />
         </InputBoxes>
         <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png" />
       </InputContainer>
       <SavedPlaces>
-        <StarIcon src="https://img.icons8.com/material/24/ffffff/star--v1.png" />
+        <StarIcon src="https://img.icons8.com/ios-filled/50/ffffff/star--v1.png" />
         Saved Places
       </SavedPlaces>
-      <ConfirmButton>
-        Confirm Locations
-      </ConfirmButton>
+      <Link href={{
+        pathname: "/confirm",
+        query: {
+          pickup: pickup,
+          dropoff: dropoff
+        }
+      }}>
+        <ConfirmButton>
+          Confirm Location
+        </ConfirmButton>
+      </Link>
     </Wrapper>
   )
 }
@@ -45,6 +66,7 @@ export default search
 
  const BackButton = tw.img`
   h-12
+  cursor-pointer
  `
 
  const FromToIcons = tw.div`
@@ -117,14 +139,17 @@ export default search
   p-2
   rounded-full
   mr-2
+  cursor-pointer
  `
 
  const ConfirmButton = tw.div`
   bg-black
-  h-10
-  items-center
   text-white
   text-center
+  h-10
+  items-center
   mt-2
+  mx-4
   pt-2
+  cursor-pointer
 `
