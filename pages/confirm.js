@@ -58,9 +58,9 @@ const Confirm = () => {
               dropoffCoordinates={dropoffCoordinates}
             />
             <ConfirmButtonContainer>
-              <ConfirmButton>
-                Confirm uberX
-              </ConfirmButton>
+              <Link href="/success">
+              <ConfirmButton>Confirm trip</ConfirmButton>
+              </Link>
             </ConfirmButtonContainer>
           </RideContainer>
         </Wrapper>
@@ -91,6 +91,7 @@ mx-4
 py-4
 text-center
 text-xl
+cursor-pointer
 `
 
 const ConfirmButtonContainer = tw.div`
