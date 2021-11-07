@@ -3,12 +3,13 @@ import Map from "./components/Map"
 import tw from "tailwind-styled-components"
 import {useRouter} from "next/router"
 import RideSelector from "./components/RideSelector"
+import Link from "next/link"
 
 const confirm = () => {
   const router = useRouter()
   const { pickup, dropoff } = router.query
-  const [pickupCoordinates, setPickupCoordinates] = useState()
-  const [dropoffCoordinates, setDropoffCoordinates] = useState()
+  const [pickupCoordinates, setPickupCoordinates] = useState([0, 0])
+  const [dropoffCoordinates, setDropoffCoordinates] = useState([0, 0])
 
   const getPickupCoordinates = (pickup) => {
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
@@ -44,12 +45,18 @@ const confirm = () => {
 
     return (
         <Wrapper>
+          <Link href="/search">
+            <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+          </Link>
           <Map 
             pickupCoordinates={pickupCoordinates}
             dropoffCoordinates={dropoffCoordinates}
           />
           <RideContainer>
-            <RideSelector />
+            <RideSelector 
+              pickupCoordinates={pickupCoordinates}
+              dropoffCoordinates={dropoffCoordinates}
+            />
             <ConfirmButtonContainer>
               <ConfirmButton>
                 Confirm uberX
@@ -62,9 +69,18 @@ const confirm = () => {
 
 export default confirm;
 
- const BackButton = tw.img`
-  h-12
-  cursor-pointer
+const BackButton = tw.img`
+bg-white
+h-12
+cursor-pointer
+rounded-full 
+absolute
+left-0
+top-0
+z-10
+ml-2
+mt-2
+shadow-md
  `
 
 const ConfirmButton = tw.div`
