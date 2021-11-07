@@ -35,29 +35,26 @@ export default function Home() {
           <UberLogo src="https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg" />
           <Profile>
             <Name>{user && user.name}</Name>
-            <UserImage src={user && user.photoUrl} onClick={() => signOut(auth)}/>
+            <UserImage src={user && user.photoUrl}/>
+            <LogOut onClick={() => signOut(auth)}>Log out</LogOut>
           </Profile>
         </Header>
         <ActionButtons>
 
           <Link href="/search">
-          <ActionButton>
+          <ActionButton1>
             <ActionButtonImage src="https://i.ibb.co/cyvcpfF/uberx.png" />
             Ride
-          </ActionButton>
+          </ActionButton1>
           </Link>
-          <Link href="/search">
           <ActionButton>
             <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png" />
             Wheels
           </ActionButton>
-          </Link>
-          <Link href="/search">
           <ActionButton>
             <ActionButtonImage src="https://i.ibb.co/5RjchBg/uberschedule.png" />
             Reserve
           </ActionButton>
-          </Link>
 
         </ActionButtons>
           <InputButton>
@@ -68,6 +65,12 @@ export default function Home() {
     </Wrapper>
   )
 }
+
+const LogOut = tw.div`
+cursor-pointer
+text-sm
+underline
+`
 
 const Wrapper = tw.div`
   flex flex-col h-screen
@@ -100,11 +103,26 @@ const UserImage = tw.img`
   border 
   border-gray-200 
   p-px 
-  cursor-pointer
 `
 
 const ActionButtons = tw.div`
   flex
+`
+
+const ActionButton1 = tw.div`
+  flex 
+  bg-gray-200 
+  flex-1 
+  m-1 
+  h-32 
+  items-center 
+  flex-col 
+  justify-center 
+  rounded-lg 
+  transform hover:scale-105
+  transition
+  text-xl
+  cursor-pointer
 `
 
 const ActionButton = tw.div`
@@ -120,6 +138,7 @@ const ActionButton = tw.div`
   transform hover:scale-105
   transition
   text-xl
+  opacity-50
 `
 
 const ActionButtonImage = tw.img`
