@@ -10,7 +10,7 @@ const RideSelector = ({pickupCoordinates, dropoffCoordinates}) => {
     fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]}, ${pickupCoordinates[1]};${dropoffCoordinates[0]}, ${dropoffCoordinates[1]}?access_token=pk.eyJ1IjoiZGd0Z25kIiwiYSI6ImNrdmxvYnF5ZDM3MGcydXFpenB1ZWp2YXoifQ.nsmEJW8g6WXT00bCGuG14g`)
     .then(response => response.json())
     .then(data => {
-      setRideDuration(data.routes[0].duration / 100)})
+      setRideDuration(data.routes[0]?.duration / 100)})
   }, [pickupCoordinates, dropoffCoordinates])
 
   return (
