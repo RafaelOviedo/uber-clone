@@ -39,12 +39,6 @@ const addToMap = (map, coordinates) => {
   .addTo(map);
 }
 
-  // useEffect(() => {
-  //   if(pickupCoordinates) {
-  //     addToMap(map)
-  //   }
-  // }, [props.pickupCoordinates, props.dropoffCoordinates])
-
   return (
     <Wrapper id="map"></Wrapper>
   )
